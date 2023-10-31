@@ -62,4 +62,5 @@ public class Piso
     public boolean isParadaSolicitada(){
         return paradaSolicitada;
     }
+    
 }
