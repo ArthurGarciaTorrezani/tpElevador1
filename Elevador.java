@@ -5,7 +5,7 @@ public class Elevador
     private boolean subir;
     private boolean descer;
     private Piso pisoAtual;
-    
+
     public Elevador(Piso pisoAtual)
     {
         this.pisoAtual = pisoAtual;
@@ -40,4 +40,27 @@ public class Elevador
     public void pararNoPiso(Piso pisoParar){
         pisoParar.pararElevador();
     }
+
+   
+
+    public void mostrarPainel(){
+        Piso pisoReferencia = pisoAtual;
+        System.out.println("*** Painel Elevador ***");
+        for(int i = 1;i <= pisoAtual.contador;i++){
+            
+            if(pisoReferencia == pisoAtual){
+                System.out.print(">"+i+"<");
+            }else if(pisoReferencia.isParadaSolicitada()){
+                System.out.print("*"+i+"*"); 
+            }else{
+                System.out.print(""+i+""); 
+            }
+
+            
+                pisoReferencia = pisoReferencia.getProximoPiso();
+            
+        }   
+    }
+
+    
 }
