@@ -7,10 +7,12 @@ public class Piso
     private Piso pisoAnte;
     private boolean pararElevador;
     private boolean paradaSolicitada;
-    
+    public static int contador = 0;
+
     public Piso(int andar)
     {
     this.andar = andar;
+    contador++;
     }
 
     public int getAndar(){
@@ -41,12 +43,12 @@ public class Piso
         this.pisoAnte = pisoAnte;
     }
     
-    public int getProximoPiso(){
-        return proxPiso.andar;
+    public Piso getProximoPiso(){
+        return proxPiso;
     }
     
-    public int getPisoAnterior(){
-        return proxPiso.andar;
+    public Piso getPisoAnterior(){
+        return pisoAnte;
     }
     
     public void pararElevador(){
