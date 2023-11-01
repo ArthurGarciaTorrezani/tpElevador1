@@ -25,12 +25,12 @@ public class Elevador {
         return porta;
     }
 
-    public void subir(){
+    public void subir() {
         subir = true;
         descer = false;
     }
 
-    public void descer(){
+    public void descer() {
         subir = false;
         descer = true;
     }
@@ -56,9 +56,9 @@ public class Elevador {
         System.out.println("*** Painel Elevador ***");
         for (int i = 1; i <= pisoAtual.contador; i++) {
 
-            if(pisoReferencia == pisoAtual) {
+            if (pisoReferencia == pisoAtual) {
                 System.out.print(">" + i + "<");
-            }else if (pisoReferencia.isParadaSolicitada()) {
+            } else if (pisoReferencia.isParadaSolicitada()) {
                 System.out.print("*" + i + "*");
             } else {
                 System.out.print("" + i + "");
@@ -67,13 +67,38 @@ public class Elevador {
         }
     }
 
-    public void mover(){
-        if(subir){
-            pisoAtual = pisoAtual.getProximoPiso();
-        }else{
-            pisoAtual = pisoAtual.getPisoAnterior();
+    public void mover() {
+        if(!porta){
+            if(pisoAtual.getAndar() == pisoAtual.contador){
+                descer = true;
+                pisoAtual = pisoAtual.getPisoAnterior();
+            }else if(pisoAtual.getAndar() == 1){
+                subir = true;
+                pisoAtual = pisoAtual.getProximoPiso();
+            }else{
+                if(subir){
+                    pisoAtual.receberElevador(subir, descer);
+                    if(pisoAtual.getReceberElevador()){
+                        porta = true;
+                        pisoAtual.setSubirFalsa();
+                        pisoAtual.setParadaFalsa();
+                    }else{
+                        pisoAtual = pisoAtual.getProximoPiso();
+                    }
+                } else {
+                    pisoAtual.receberElevador(subir, descer);
+                    if(pisoAtual.getReceberElevador()){
+                        porta = true;
+                        pisoAtual.setDescerFalsa();
+                        pisoAtual.setParadaFalsa();
+                    }else{
+                        pisoAtual = pisoAtual.getPisoAnterior();
+                    }
+                }
+
+            }
         }
-        
+
     }
 
 }
