@@ -1,5 +1,4 @@
-public class Piso
-{   
+public class Piso {
     private int andar;
     private boolean subir;
     private boolean descer;
@@ -8,59 +7,92 @@ public class Piso
     private boolean pararElevador;
     private boolean paradaSolicitada;
     public static int contador = 0;
+    private boolean receberElevador;
 
-    public Piso(int andar)
-    {
-    this.andar = andar;
-    contador++;
+    public Piso(int andar) {
+        this.andar = andar;
+        contador++;
     }
 
-    public int getAndar(){
+    public int getAndar() {
         return andar;
     }
-    
-    public void queroSubir(){
+
+    public void queroSubir() {
         subir = true;
     }
-    
-    public void queroDescer(){
+
+    public void queroDescer() {
         descer = true;
     }
-    
-    public boolean isQueroSubir(){
+
+    public void setSubirFalsa(){
+        subir = false;
+    }
+
+    public void setDescerFalsa(){
+        descer = false;
+    }
+
+    public boolean isQueroSubir() {
         return subir;
     }
-    
-    public boolean isQueroDescer(){
+
+    public boolean isQueroDescer() {
         return descer;
     }
-    
-    public void setProximoPiso(Piso proxPiso){
+
+    public void setProximoPiso(Piso proxPiso) {
         this.proxPiso = proxPiso;
     }
-    
-    public void setPisoAnterior(Piso pisoAnte){
+
+    public void setPisoAnterior(Piso pisoAnte) {
         this.pisoAnte = pisoAnte;
     }
-    
-    public Piso getProximoPiso(){
+
+    public Piso getProximoPiso() {
         return proxPiso;
     }
-    
-    public Piso getPisoAnterior(){
+
+    public Piso getPisoAnterior() {
         return pisoAnte;
     }
-    
-    public void pararElevador(){
+
+    public void pararElevador() {
         pararElevador = true;
     }
-    
-    public void solicitarParada(){
+
+    public boolean getPararElevador(){
+        return pararElevador;
+    }
+
+    public void solicitarParada() {
         paradaSolicitada = true;
     }
-    
-    public boolean isParadaSolicitada(){
+
+    public void setParadaFalsa(){
+        paradaSolicitada = false;
+    }
+
+    public boolean isParadaSolicitada() {
         return paradaSolicitada;
     }
-    
+
+    public void receberElevador(boolean elevadorSubindo, boolean elevadorDescendo) {
+        if (paradaSolicitada) {
+            receberElevador = true;
+        } else if (subir == elevadorSubindo) {
+            receberElevador = true;
+        } else if (descer == elevadorDescendo) {
+            receberElevador = true;
+        }else{
+            receberElevador = false;
+        }
+
+    }
+
+    public boolean getReceberElevador(){
+        return receberElevador;
+    }
+
 }
