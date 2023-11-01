@@ -94,5 +94,17 @@ public class Piso {
     public boolean getReceberElevador(){
         return receberElevador;
     }
+    
+    public void mostrarPainel(){
+        if(subir && descer){
+            System.out.println(andar + " ▲▼");
+        }else if(!subir && !descer){
+            System.out.println(andar + " △▽");
+        }else if(subir && !descer){
+            System.out.println(andar+" ▲▽");
+        }else{
+            System.out.println(andar+" △▼");
+        }
+    }
 
 }
